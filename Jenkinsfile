@@ -8,17 +8,13 @@ pipeline {
         DOCKERHUB_REPOSITORY = 'cdelambert/mailu'
     }
     
-    stages {
-        stage('Login to Docker Registry') {
-            steps {
-                // Connexion au registre DockerHub
-                script {
-                    withCredentials([usernamePassword(credentialsId: 'dockerhub-credentials', passwordVariable: 'DOCKERHUB_CREDENTIALS_PSW', usernameVariable: 'DOCKERHUB_CREDENTIALS_USR')]) {
-                        sh "echo \$DOCKERHUB_CREDENTIALS_PSW | docker login -u \$DOCKERHUB_CREDENTIALS_USR --password-stdin"
-                    }
+  stage('Login') {
+                steps {
+                         sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+                 
                 }
-            }
-        }
+          }
+
         
         stage('Build Docker Image') {
             steps {
