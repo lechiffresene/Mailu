@@ -25,7 +25,7 @@ pipeline {
             stage('Build image') {
 
                 steps {
-                        sh "docker build -t cdelambert/Mailu:${shortCommit}  ."
+                        sh "docker build -t cdelambert/Mailu-odoo:${shortCommit}  ."
 
 
                 }
@@ -42,7 +42,7 @@ pipeline {
             stage('Push image') {
                 
                 steps {
-                        sh "docker push cdelambert/Mailu:${shortCommit} "
+                        sh "docker push cdelambert/Mailu-odoo:${shortCommit} "
 
 
                 }
@@ -51,7 +51,7 @@ pipeline {
             stage('Clean image') {
                 
                 steps {
-                        sh "docker rmi cdelambert/Mailu:${shortCommit} "
+                        sh "docker rmi cdelambert/Mailu-odoo:${shortCommit} "
 
                 }
             }
